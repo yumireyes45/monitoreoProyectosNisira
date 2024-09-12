@@ -1,0 +1,35 @@
+{% extends 'pruebaPlantilla.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+<main class="flex items-center justify-center min-h-screen bg-gray-100 py-10">
+    <div class="p-8 bg-white rounded-lg shadow-lg w-full max-w-md">
+        <form action="/signup/" method="POST" class="space-y-6">
+            <h1 class="text-2xl font-bold text-center mb-4">Registro</h1>
+            {{error}}
+            {% csrf_token %}
+            <div>
+                <label for="username" class="block text-gray-700 font-medium">Usuario:</label>
+                <input type="text" name="username" id="username" class="w-full mt-1 p-3 border border-gray-300 rounded focus:ring focus:ring-indigo-200 focus:border-indigo-300" placeholder="Escribe tu usuario">
+            </div>
+
+            <div>
+                <label for="password1" class="block text-gray-700 font-medium">Contraseña:</label>
+                <input type="password" name="password1" id="password1" class="w-full mt-1 p-3 border border-gray-300 rounded focus:ring focus:ring-indigo-200 focus:border-indigo-300" placeholder="Escribe tu contraseña">
+            </div>
+
+            <div>
+                <label for="password2" class="block text-gray-700 font-medium">Confirma Contraseña:</label>
+                <input type="password" name="password2" id="password2" class="w-full mt-1 p-3 border border-gray-300 rounded focus:ring focus:ring-indigo-200 focus:border-indigo-300" placeholder="Confirma tu contraseña">
+            </div>
+            <br>
+            <button type="submit" style="background-color: #38a169 !important;" class="w-full bg-green-500 text-white py-3 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                Crear Usuario
+            </button>
+        </form>
+    </div>
+</main>
+
+{% endblock %}
+
+

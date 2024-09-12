@@ -1,0 +1,70 @@
+{% extends 'pruebaPlantilla.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+<main class="flex items-start justify-center min-h-screen bg-gray-100 py-10">  
+    <div class="p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Crear Costos de Proyecto</h1>
+        {{ error }}
+        <form action="/cost/create/" method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="id_project" class="block text-gray-700 font-medium">Proyecto</label>
+                {{ form.project }}
+            </div>
+            <div>
+                <label for="id_phase" class="block text-gray-700 font-medium">Fase</label>
+                {{ form.phase }}
+            </div>
+            <div>
+                <label for="id_date" class="block text-gray-700 font-medium">Fecha</label>
+                {{ form.date }}
+            </div>
+            <div>
+                <label for="id_description" class="block text-gray-700 font-medium">Descripción del Costo</label>
+                {{ form.description }}
+            </div>
+            <div>
+                <label for="id_amount" class="block text-gray-700 font-medium">Monto</label>
+                {{ form.amount }}
+            </div>
+            <div>
+                <label for="id_user" class="block text-gray-700 font-medium">Usuario Responsable</label>
+                {{ form.user }}
+            </div>
+            <br>
+            <button style="background-color: #38a169 !important;" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75" type="submit">
+                Guardar
+            </button>
+        </form>
+        <!-- jQuery Script -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#id_project').change(function () {
+                    var url = '/ajax/load-phases/';
+                    var projectId = $(this).val();
+
+                    $.ajax({
+                        url: url,
+                        data: {
+                            'project': projectId
+                        },
+                        success: function (data) {
+                            $("#id_phase").html('');
+                            $.each(data, function (key, value) {
+                                $("#id_phase").append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+</main>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,43 @@
+{% extends 'pruebaPlantilla.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+
+<main class="flex items-start justify-center min-h-screen bg-gray-100">  
+    <div class="p-8 rounded-lg shadow-md w-full max-w-md mt-10">
+        <h1 class="text-2xl font-bold text-center mb-6">Crear Proyecto</h1>
+        {{error}}
+        <div class="tailwind-form">
+            <form action="/project/create/" method="POST" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label for="id_name" class="block text-gray-700 font-medium">Nombre del Proyecto</label>
+                    {{ form.name }}
+                </div>
+                <div>
+                    <label for="id_description" class="block text-gray-700 font-medium">Descripción del Proyecto</label>
+                    {{ form.description }}
+                </div>
+                <div>
+                    <label for="id_total_budget" class="block text-gray-700 font-medium">Presupuesto Total</label>
+                    {{ form.total_budget }}
+                </div>
+                <div>
+                    <label for="id_start_date" class="block text-gray-700 font-medium">Fecha de Inicio</label>
+                    {{ form.start_date }}
+                </div>
+                <div>
+                    <label for="id_end_date" class="block text-gray-700 font-medium">Fecha de Finalización</label>
+                    {{ form.end_date }}
+                </div>
+                <br>
+                <button style="background-color: #38a169 !important;" class="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75" type="submit">
+                    Guardar
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'pruebaPlantilla.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+
+<main class="container mx-auto p-6 bg-gray-100">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-6">Proyectos</h1>
+    </div>
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="w-full table-auto leading-normal">
+            <thead>
+                <tr class="bg-gray-600 text-white uppercase text-sm leading-normal">
+                    <th class="px-6 py-4 text-left">Proyecto</th>
+                    <th class="px-6 py-4 text-left">Descripción</th>
+                    <th class="px-6 py-4 text-left">Presupuesto</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                {% for proyecto in proyectito %}
+                <tr class="border-b hover:bg-gray-100">
+                    <td class="px-6 py-4 text-gray-800 font-semibold flex items-center">
+                        <a href="{% url 'project_detail' proyecto.id %}" class="hover:underline flex items-center">
+                            {{ proyecto.name }}
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M17.414 2.586a2 2 0 00-2.828 0l-10 10V17h4.414l10-10a2 2 0 000-2.828zM14 6l-8 8H5v-1l8-8z" />
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">{{ proyecto.description }}</td>
+                    <td class="px-6 py-4 text-gray-600">{{ proyecto.total_budget }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+
+{% endblock %}

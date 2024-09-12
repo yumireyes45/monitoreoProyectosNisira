@@ -1,0 +1,9 @@
+{% extends 'pruebaPlantilla.html' %}
+ <!-- Tailwind CSS -->
+ <!--<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+ {% block content %}
+         {% load plotly_dash %}
+         {% plotly_header %}
+         {% plotly_direct name=code %}
+         {% plotly_footer %}
+{% endblock %}

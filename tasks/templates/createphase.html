@@ -1,0 +1,59 @@
+{% extends 'pruebaPlantilla.html' %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+<main class="flex items-center justify-center min-h-screen bg-gray-100">  
+    <div class="p-8 rounded-lg shadow-md w-full max-w-md mt-10">
+        <h1 class="text-2xl font-bold text-center mb-6">Crear Fases de Proyecto</h1>
+        {{error}}
+        <form action="/phase/create/" method="POST" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="id_project" class="block text-gray-700 font-medium">Proyecto</label>
+                {{ form.project }}
+            </div>
+            <div>
+                <label for="id_name" class="block text-gray-700 font-medium">Nombre de la Fase</label>
+                {{ form.name }}
+            </div>
+            <div>
+                <label for="id_start_date" class="block text-gray-700 font-medium">Fecha de Inicio</label>
+                {{ form.start_date }}
+            </div>
+            <div>
+                <label for="id_end_date" class="block text-gray-700 font-medium">Fecha de Finalización</label>
+                {{ form.end_date }}
+            </div>
+            <br>
+            <div class="flex items-center">
+                <!--<input id="id_important" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">-->
+                <label for="id_important" class="mr-4 block text-gray-700 font-medium">Importante</label>
+                {{ form.important }}
+            </div>
+            <br>
+            <div>
+                <label for="id_status" class="block text-gray-700 font-medium">Estado</label>
+                {{ form.status }}
+            </div>
+            <div>
+                <label for="id_percentage_completed" class="block text-gray-700 font-medium">Porcentaje Completado</label>
+                {{ form.percentage_completed }}
+            </div>
+            <div>
+                <label for="id_duration_hours" class="block text-gray-700 font-medium">Horas de Duración</label>
+                {{ form.duration_hours }}
+            </div>
+            <div>
+                <label for="id_user" class="block text-gray-700 font-medium">Usuario Responsable</label>
+                {{ form.user }}
+            </div>
+            <br>
+            <button style="background-color: #38a169 !important;" class="w-full bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"  type="submit">
+                Guardar
+            </button>
+        </form>
+    </div>
+</main>
+
+
+{% endblock %}
